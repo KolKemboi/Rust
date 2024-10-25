@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, result};
 
 pub fn run()
 {
@@ -104,5 +104,53 @@ pub fn hashimapu()
         None => println!("No value"),
     }
 
+
+}
+
+pub fn errors()
+{
+    fn divide(a: f64, b: f64) -> Result<f64, String>
+    {
+        if b == 0.0
+        {
+            return Err(String::from("Zero Division Error"));
+        }
+        else 
+        {
+            return Ok(a/b);    
+        }
+    }
+
+    match divide(10.0, 3.0)
+    {
+        Ok(result ) =>println!("{}", result),
+        Err(error) =>println!("Error"),
+    };
+
+    match divide(10.0, 0.0)
+    {
+        Ok(result ) =>println!("{}", result),
+        Err(error) =>println!("{}", error),
+    };
+
+
+
+    //-------------------------
+
+    fn find_item(id: i32)-> Option<String>
+    {
+        if id == 1
+        {
+            return Some(String::from("Item_1"));
+        }
+        else {
+            return None;
+        }
+    }
+
+    match find_item(1) {
+        Some(val)=> println!("{}", val),
+        None => println!("Nothing"),
+    }
 
 }

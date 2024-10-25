@@ -8,4 +8,5 @@ fn main() {
     libs::structs();
     libs::enums();
     libs::hashimapu();
+    libs::errors();
 }
