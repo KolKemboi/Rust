@@ -26,8 +26,34 @@ impl std::fmt::Display for Errors
 
 fn main() {
     let error = Errors::Error1;
-    println!("{}", error);
+   // println!("{}", error);
     println!("{:?}", error);
     //combined::run();
     //more_combo::run();
+    let new_event = Event::BACKWARD;
+    new_event.event();
+}
+
+
+
+enum Event
+{
+    FORWARD,
+    BACKWARD,
+    RIGHT,
+    LEFT,
+}
+
+impl Event
+{
+    fn event(&self)
+    {
+        match self
+        {
+            Event::BACKWARD => println!("Went Back"),
+            Event::FORWARD => println!("Went Forward"),
+            Event::RIGHT => println!("Went rigth"),
+            Event::LEFT => println!("Went Left"),
+        }
+    }
 }
