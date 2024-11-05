@@ -1,46 +1,41 @@
 #[allow(unused)]
 
-
-fn main() {
-    
-    println!("Hello, world!");
-
-    let pair = Pair::new(10, "Hello");
-    println!("{}", pair.get_first());
-    println!("{}", pair.get_second());
-    println!("{}", pair.describe());
-}
-
-trait Describe {
-    fn describe(&self) ->String;
-}
-
-struct Pair<T, U>
+fn main()
 {
-    first: T,
-    second: U,
+    let data = Data::new("info", "endpoint");
+    data.ret_endpoint();
+    data.ret_info();
 }
 
-impl <T, U> Pair<T, U>
+trait InfoShow
 {
-    fn new(first: T, second: U) ->Self
-    {
-        Pair { first: first, second: second }
-    }
-    fn get_first (&self) -> &T 
-    {
-        &self.first
-    }
-    fn get_second (&self) -> &U 
-    {
-        &self.second
-    }
-    
+    fn showinfo(&self) ->String;
+}
+struct Data<T, U>
+{
+    info: T,
+    endpoint: U,
 }
 
-impl<T: std::fmt::Display, U: std::fmt::Display> Describe for Pair<T, U>
+impl <T: std::fmt::Display, U: std::fmt::Display> Data<T, U>
 {
-    fn describe(&self) ->String {
-        format!("pair contains {}, {}", self.first, self.second)
+    fn new(info: T, endpoint: U) ->Self
+    {
+        Data { info: info, endpoint: endpoint }
+    }    
+    fn ret_info(&self)
+    {
+        println!("{}", self.info);
+    }
+    fn ret_endpoint(&self)
+    {
+        println!("{}", self.endpoint);
+    }
+}
+
+impl<T: std::fmt::Display, U: std::fmt::Display> InfoShow for Data<T, U>
+{
+    fn showinfo(&self) -> String {
+        format!("Info: {}, Endpoint: {}", self.info, self.endpoint)
     }
 }
